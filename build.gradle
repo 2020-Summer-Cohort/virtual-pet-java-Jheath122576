@@ -1,0 +1,29 @@
+apply plugin: 'eclipse'
+apply plugin: 'java'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
+	testRuntimeOnly'org.junit.jupiter:junit-jupiter-engine:5.6.2'
+	testImplementation 'org.assertj:assertj-core:3.11.1'
+	testImplementation 'org.hamcrest:hamcrest:2.2'
+	testImplementation'org.mockito:mockito-core:3.3.3'
+}
+
+test {
+	useJUnitPlatform()
+}
+task buildSrcFolders {
+
+	description 'Builds default source folders'
+
+	doLast {
+		mkdir("src/main/java")
+		mkdir("src/test/java")
+	}
+}
+
+tasks.eclipse.dependsOn buildSrcFolders
